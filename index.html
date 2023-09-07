@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html translate="no" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>El Pollo Loco</title>
+    <link rel="icon" type="image/x-icon" href="img/12_otherIMG/hen.png" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script src="js/audio.js"></script>
+    <script src="classes/drawableObject-class.js"></script>
+    <script src="classes/movableObjects-class.js"></script>
+    <script src="classes/throwableObjects-class.js"></script>
+    <script src="classes/keyboard-class.js"></script>
+    <script src="classes/statusbar-class.js"></script>
+    <script src="classes/healthbar-class.js"></script>
+    <script src="classes/endboss-healthbar-class.js"></script>
+    <script src="classes/coinbar-class.js"></script>
+    <script src="classes/bottlebar-class.js"></script>
+    <script src="classes/background-objects.js"></script>
+    <script src="classes/cloud-class.js"></script>
+    <script src="classes/small-chicken-class.js"></script>
+    <script src="classes/chicken-class.js"></script>
+    <script src="classes/character-class.js"></script>
+    <script src="classes/coin-class.js"></script>
+    <script src="classes/bottle.class.js"></script>
+    <script src="classes/endboss-class.js"></script>
+    <script src="classes/world-class.js"></script>
+    <script src="levels/level1.js"></script>
+    <script src="classes/level-class.js"></script>
+    <script src="js/game.js"></script>
+  </head>
+
+  <body id="body" onload="playStartMusic()">
+    <div class="main-container" id="main-container">
+      <div class="rotate d-none" id="rotate">
+        <div class="rotate-content" id="rotate-content">
+          Please<img src="img/12_otherIMG/screen-rotate.png" />rotate your
+          device
+        </div>
+      </div>
+      <h1 id="headline">El Pollo Loco</h1>
+      <div id="canvas-container">
+        <div id="game-over" style="display: none">
+          <img
+            src="img/9_intro_outro_screens/game_over/game over!.png"
+            class="restart"
+            id="game-over-img"
+          />
+          <button
+            class="buttons"
+            style="display: none"
+            id="restart-btn"
+            onclick="restartGame()"
+          >
+            Try again
+          </button>
+        </div>
+
+        <div class="btn-container" id="btn-container">
+          <button
+          title="Start Game"
+            class="startGame hoverPlayButton"
+            id="start-btn"
+            onclick="startGame()"
+          >
+            <h3>Start Game</h3>
+          </button>
+
+          <button
+            class="buttons hoverControlButton"
+            onclick="showControls()"
+            id="control-btn"
+          >
+            <img src="img/12_otherIMG/gamepad.png" />
+          </button>
+          <button
+            class="buttons hoverInfoButton"
+            onclick="showInformation()"
+            id="info-btn"
+          >
+            <img src="img/12_otherIMG/info.png" />
+          </button>
+          <button
+            class="buttons hoverUnMuteButton"
+            style="display: none"
+            onclick="unmuteAllSounds()"
+            id="sound-on"
+          >
+            <img src="img/12_otherIMG/sound-off.png" />
+          </button>
+          <button
+            class="buttons hoverSoundOnButton"
+            style="display: flex"
+            id="sound-mute"
+            onclick="muteAllSounds()"
+          >
+            <img src="img/12_otherIMG/sound.on.png" />
+          </button>
+          <button
+            class="buttons hoverFullscreenButton"
+            style="display: flex"
+            onclick=" fullScreen()"
+            id="fullscreen-icon"
+          >
+            <img src="img/12_otherIMG/fullscreen.png" />
+          </button>
+          <button
+            class="buttons"
+            style="display: none"
+            onclick=" minimizeFullscreen()"
+            id="exitfull-icon"
+          >
+            <img src="img/12_otherIMG/minimize.png" />
+          </button>
+        </div>
+
+        <div id="winner" style="display: none">
+          <span>ARRRIBBA!</span> <br />
+          <span>Pepe rescued the farm !!!</span>
+          <button
+            class="buttons"
+            style="display: none"
+            id="restart-btn-win"
+            onclick="restartGame()"
+          >
+            Play again
+          </button>
+        </div>
+        <div class="control-info" id="information-text" style="display: none">
+          <div id="x-mark">
+            <img
+              src="img/10_control/close2.png"
+              onclick="hideInformationOverlay()"
+            />
+          </div>
+          <h2>Pepe Peligroso</h2>
+          <p class="info-text-story">
+            This is Pepe, he is known for having a big farm with chickens und
+            other animals. One morning , not very different from the others,
+            Pepe woke up to hear all the chickens screaming like cazy. He
+            stepped outside and saw that all the chicken tried to attack him.
+            One chicken even grew ten times bigger than the rest. But everyone
+            knows Pepe, he is not afraid of anything. He decided to save his
+            farm from the crazy chicken. The small chicken Pepe eliminated very
+            quickly, but for the big chicken Pepe grabbed some bottles of El
+            Yuceteco a mexican sauce as hot as the sun. Finally Pepe won against
+            that chicken as well and celebrated while sitting on his porch and
+            drink a handfull of corona bears.
+          </p>
+        </div>
+        <div id="control-info" class="control-info" style="display: none">
+          <div id="x-mark">
+            <img
+              src="img/10_control/close2.png"
+              onclick="hideControlOverlay()"
+            />
+          </div>
+          <div id="subhead" class="sub-headline">
+            <h2 id="headline2">Controls</h2>
+          </div>
+          <div id="control1">
+            <span>move left :</span
+            ><span><img src="img/10_control/left.png" /></span>
+          </div>
+          <div id="control2">
+            <span>move right :</span
+            ><span><img src="img/10_control/right.png" /></span>
+          </div>
+          <div id="control3">
+            <span>jump :</span
+            ><span><img src="img/10_control/space2.png" alt="SPACE" /></span>
+          </div>
+          <div id="control4">
+            <span>throw bottle :</span
+            ><span
+              ><img src="img/10_control/throwbottle.png" alt="SPACE"
+            /></span>
+          </div>
+        </div>
+        <div id="start-screen">
+          <img
+            src="img/9_intro_outro_screens/start/startscreen_1.png"
+            id="start-img"
+          />
+        </div>
+        <canvas id="canvas" width="720" height="480"> </canvas>
+        <div class="mobile-btn-container">
+          <div class="width">
+            <img
+              src="img/10_control/left.png"
+              class="buttons"
+              id="left"
+              onclick="moveLeft()"
+              title="Walk Left"
+            />
+            <img
+              src="img/10_control/right.png"
+              class="buttons"
+              id="right"
+              onclick="moveRight()"
+              title="WalkRight"
+            />
+          </div>
+          <div class="width">
+            <img
+              src="img/10_control/up.png"
+              class="buttons"
+              id="jump"
+              onclick="jump()"
+              title="Jump"
+            />
+            <img
+              src="img/10_control/bottle.png"
+              class="buttons"
+              id="throw"
+              onclick="throwBottle()"
+              title="ThrowBottle"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
