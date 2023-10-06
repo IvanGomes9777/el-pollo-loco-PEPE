@@ -46,6 +46,9 @@ class Chicken extends moveableObject {
     this.animate();
   }
 
+  /**
+ * Initiates the animation loop for the chicken.
+ */
   animate() {
     let animationInterval = setInterval(() => {
       if (this.isDead()) {
@@ -60,18 +63,27 @@ class Chicken extends moveableObject {
     }, 5500 / 60);
   }
 
+  /**
+ * Moves the chicken to the left and plays walking animation.
+ */
   chickenMoving() {
     this.moveLeft();
     this.playAnimation(this.Walking_Images_Enemies);
     this.otherDirection = false;
   }
 
+  /**
+ * Animates the chicken's movement after death.
+ */
   killedChickenToHell() {
     setInterval(() => {
       this.y++;
     }, 50);
   }
 
+  /**
+ * Handles the interval for chicken death animation.
+ */
   chickenDeathInterval() {
     this.playAnimation(this.Dead_Images_Enemies);
     this.killedChickenToHell();

@@ -209,6 +209,7 @@ img {
 
 .info-text-story {
   line-height: 28px;
+  padding: 10px;
 }
 
 .main-container {
@@ -277,7 +278,7 @@ p {
   border: 3px solid white;
   padding-bottom: 10px;
   opacity: 0.85;
-  overflow: auto;
+overflow-x: hidden;
 }
 
 .control-info div {

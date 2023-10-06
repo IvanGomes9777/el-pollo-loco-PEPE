@@ -126,6 +126,9 @@ class World {
     this.currentImage++;
   }
 
+  /**
+ * Runs a series of collision checks and actions at regular intervals.
+ */
   run() {
     setInterval(() => {
       this.checkThrow();
@@ -138,10 +141,16 @@ class World {
     }, 50);
   }
 
+  /**
+ * Clears all intervals in the window.
+ */
   clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
   }
 
+  /**
+ * Checks for collisions between the character and enemies, and performs corresponding actions.
+ */
   checkCollisionsEnemies() {
     this.level.enemies.forEach((enemy) => {
       if (
@@ -166,6 +175,9 @@ class World {
     });
   }
 
+  /**
+ * Checks for collision between the character and endboss, and performs corresponding actions.
+ */
   checkCollisionEndboss() {
     this.level.endboss.forEach((endboss) => {
       if (this.character.isColliding(endboss)) {
@@ -175,6 +187,9 @@ class World {
     });
   }
 
+  /**
+ * Checks if the character throws a throwable object and updates relevant properties.
+ */
   checkThrow() {
     if (this.keyboard.D && this.character.amountCollectedBottles > 0) {
       this.character.amountCollectedBottles -= 10;
@@ -187,6 +202,9 @@ class World {
     }
   }
 
+  /**
+ * Checks for collision between thrown bottles and enemies, and performs corresponding actions.
+ */
   checkCollisionOfBottleWithEnemy() {
     this.throwableObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
@@ -199,6 +217,9 @@ class World {
     });
   }
 
+  /**
+ * Checks for collision between thrown bottles and endboss, and performs corresponding actions.
+ */
   checkCollisionOfBottleWithEndboss() {
     this.throwableObjects.forEach((bottle) => {
       this.level.endboss.forEach((endboss) => {
@@ -211,6 +232,9 @@ class World {
     });
   }
 
+  /**
+ * Checks for collisions between the character and coins, and performs corresponding actions.
+ */
   checkCollisionsCoins() {
     this.level.coins.forEach((coin) => {
       if (this.character.isColliding(coin)) {
@@ -223,6 +247,9 @@ class World {
     });
   }
 
+  /**
+ * Checks for collisions between the character and bottles, and performs corresponding actions.
+ */
   checkCollisionsBottles() {
     this.level.bottles.forEach((bottle) => {
       if (this.character.isColliding(bottle)) {

@@ -110,7 +110,7 @@ class ThrowableObject extends moveableObject {
         this.bottleSplashing();
         setTimeout(() => {
           clearInterval(this.bottleInterval);
-        }, 500);
+        }, 500/30);
       }
     }, 1000 / 20);
   }
