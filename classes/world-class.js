@@ -297,6 +297,14 @@ class World {
     }, 65);
   }
 
+  /**
+ * Reduces the energy of the end boss by 10. If the energy reaches or goes below 0, it's set to 0.
+ * Otherwise, it records the time of the last hit.
+ *
+ * @memberof Game // Assuming this method belongs to a "Game" class or object
+ * @instance
+ * @method
+ */
   hitEndboss() {
     this.energy -= 10;
     if (this.energy <= 0) {
