@@ -200,32 +200,57 @@ class Endboss extends moveableObject {
   }
 
   /**
-   * Controls character movements and actions.
-   */
+ * Handles the movement of the end boss.
+ */
   playMovement() {
-    if (world.character.x > 4300 && !this.firstContact) {
-      game_music.pause();
-      endboss_music.play();
-      this.isMoving = true;
-      this.firstContact = true;
-      setTimeout(() => {
-        this.endbossMovingLeft();
-      }, 2000);
-    }
-    if (world.character.x < this.x && this.firstContact) {
+    if (this.shouldStartEndbossMovement()) {
+      this.startEndbossMovement();
+    } else if (this.shouldEndbossMoveLeft()) {
       this.endbossMovingLeft();
-    } else if (this.x < 4200 && this.firstContact) {
+    } else if (this.shouldEndbossMoveRight()) {
       this.endbossMovingRight();
-    } else if (
-      this.x > 4800 &&
-      world.character.x < this.x &&
-      this.firstContact
-    ) {
-      this.endbossMovingLeft();
     } else {
       this.playAnimation(this.Alert_Images_Endboss);
     }
   }
+  
+  /**
+ * Checks if the end boss movement should start.
+ * @returns {boolean} True if the condition is met, otherwise false.
+ */
+  shouldStartEndbossMovement() {
+    return world.character.x > 4300 && !this.firstContact;
+  }
+  
+  /**
+ * Starts the end boss movement.
+ */
+  startEndbossMovement() {
+    game_music.pause();
+    endboss_music.play();
+    this.isMoving = true;
+    this.firstContact = true;
+    setTimeout(() => {
+      this.endbossMovingLeft();
+    }, 2000);
+  }
+  
+  /**
+ * Checks if the end boss should move left.
+ * @returns {boolean} True if the condition is met, otherwise false.
+ */
+  shouldEndbossMoveLeft() {
+    return world.character.x < this.x && this.firstContact;
+  }
+  
+  /**
+ * Checks if the end boss should move right.
+ * @returns {boolean} True if the condition is met, otherwise false.
+ */
+  shouldEndbossMoveRight() {
+    return this.x < 4200 && this.firstContact;
+  }
+  
 
   /**
    * Plays the dead animation and handles character movement.

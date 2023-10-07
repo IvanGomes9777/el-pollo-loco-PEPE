@@ -153,26 +153,35 @@ class World {
  */
   checkCollisionsEnemies() {
     this.level.enemies.forEach((enemy) => {
-      if (
-        this.character.isColliding(enemy) &&
-        this.character.isAboveGround() &&
-        enemy.energy > 0
-      ) {
-        enemy.energy--;
-        this.character.jump();
-        if (enemy.energy === 0) {
-          this.clearEnemyFromCanvas(enemy);
+      if (this.character.isColliding(enemy) && enemy.energy > 0) {
+        if (this.character.isAboveGround()) {
+          this.handleCollisionAboveGround(enemy);
+        } else if (this.character.energy > 0) {
+          this.handleCollisionBelowGround(enemy);
         }
-      } else if (
-        this.character.isColliding(enemy) &&
-        !this.character.isAboveGround() &&
-        this.character.energy > 0 &&
-        enemy.energy > 0
-      ) {
-        this.character.hit(true);
-        this.healthbar.setPercentage(this.character.energy);
       }
     });
+  }
+  
+  /**
+ * Handles collision when the character is above the ground.
+ * @param {Enemy} enemy - The enemy object involved in the collision.
+ */
+  handleCollisionAboveGround(enemy) {
+    enemy.energy--;
+    this.character.jump();
+    if (enemy.energy === 0) {
+      this.clearEnemyFromCanvas(enemy);
+    }
+  }
+  
+  /**
+ * Handles collision when the character is below the ground.
+ * @param {Enemy} enemy - The enemy object involved in the collision.
+ */
+  handleCollisionBelowGround(enemy) {
+    this.character.hit(true);
+    this.healthbar.setPercentage(this.character.energy);
   }
 
   /**
