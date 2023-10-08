@@ -9,6 +9,7 @@ let level1;
  */
 function initLevel() {
   level1 = new Level(
+
     createLevelBackgrouds(),
 
     createLevelClouds(),
@@ -20,6 +21,7 @@ function initLevel() {
     createLevelAllChickens(),
 
     createLevelEndboss()
+
   );
 }
 
@@ -235,3 +237,4 @@ function createLevelAllChickens() {
 function createLevelEndboss() {
   return [new Endboss()];
 }
+x
