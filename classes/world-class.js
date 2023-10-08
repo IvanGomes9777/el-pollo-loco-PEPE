@@ -130,8 +130,11 @@ class World {
  * Runs a series of collision checks and actions at regular intervals.
  */
   run() {
-    setInterval(() => {
+    setInterval(()=>{
       this.checkThrow();
+    },300);
+    setInterval(() => {
+      // this.checkThrow();
       this.checkCollisionsEnemies();
       this.checkCollisionsCoins();
       this.checkCollisionsBottles();
@@ -321,7 +324,6 @@ class World {
     } else {
       this.lastHit = new Date().getTime();
     }
-    console.log(this.endboss.energy);
   }
 
   /**
