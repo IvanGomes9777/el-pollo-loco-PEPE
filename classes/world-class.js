@@ -138,7 +138,7 @@ class World {
       this.checkCollisionEndboss();
       this.checkCollisionOfBottleWithEnemy();
       this.checkCollisionOfBottleWithEndboss();
-    }, 10);
+    }, 35);
   }
 
   /**
