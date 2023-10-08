@@ -90,15 +90,4 @@ class Chicken extends moveableObject {
     chicken_dead_sound.play();
   }
 
-
-  /**
-   * Plays the specified animation for the chicken.
-   * @param {string[]} images - Array of image paths for the animation.
-   */
-  playAnimation(images) {
-    let i = this.currentImage % images.length;
-    let path = images[i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
-  }
 }

@@ -322,11 +322,4 @@ class Endboss extends moveableObject {
       document.getElementById("restart-btn-win").style.display = "flex";
     }, 500);
   }
-
-  /**
-   * Clears all active intervals.
-   */
-  clearAllIntervals() {
-    for (let i = 1; i < 9999; i++) window.clearInterval(i);
-  }
 }

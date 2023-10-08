@@ -117,15 +117,4 @@ class SmallChicken extends moveableObject {
     this.killedChickenToHell();
     chicken_dead_sound.play();
   }
-
-  /**
-   * Plays an animation using a sequence of images.
-   * @param {string[]} images - An array of image paths.
-   */
-  playAnimation(images) {
-    let i = this.currentImage % images.length;
-    let path = images[i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
-  }
 }
