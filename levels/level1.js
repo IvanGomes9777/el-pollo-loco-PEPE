@@ -237,4 +237,3 @@ function createLevelAllChickens() {
 function createLevelEndboss() {
   return [new Endboss()];
 }
-x
