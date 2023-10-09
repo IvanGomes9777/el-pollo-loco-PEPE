@@ -157,7 +157,7 @@ class World {
   checkCollisionsEnemies() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy) && enemy.energy > 0) {
-        if (this.character.isAboveGround()) {
+        if (this.character.isAboveGround() && this.character.speedY < 0) {
           this.handleCollisionAboveGround(enemy);
         } else if (this.character.energy > 0) {
           this.handleCollisionBelowGround(enemy);
